@@ -38,10 +38,10 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml
 
 PRODUCT_PROPERTY_OVERRIDES += \
-#    af.resampler.quality=4 \
-#    audio.offload.buffer.size.kb=32 \
-#    audio.offload.gapless.enabled=false \
-#    av.offload.enable=true
+    af.resampler.quality=4 \
+    audio.offload.buffer.size.kb=32 \
+    audio.offload.gapless.enabled=false \
+    av.offload.enable=true
 
 # Thermal config
 PRODUCT_COPY_FILES += \
@@ -96,24 +96,10 @@ PRODUCT_PACKAGES += \
     init.ril.rc \
     init.target.rc \
     ueventd.qcom.rc
-# HAL
-PRODUCT_PACKAGES += \
-    copybit.msm8974 \
-    gralloc.msm8974 \
-    hwcomposer.msm8974 \
-    memtrack.msm8974 \
-    power.msm8974 \
-    camera.msm8974
 
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
-    audio.a2dp.default \
-    audio_policy.msm8974 \
-    audio.primary.msm8974 \
-    audio.r_submix.default \
-    audio.usb.default \
-    libaudio-resampler \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     tinymix
@@ -140,7 +126,7 @@ PRODUCT_COPY_FILES += \
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-#    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp
 
 # Lights
 PRODUCT_PACKAGES += lights.MSM8974
@@ -165,9 +151,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-#    persist.radio.add_power_save=1 \
-#    persist.radio.apm_sim_not_pwdn=1 \
-#    persist.radio.lte_vrat_report=1 \
+    persist.radio.add_power_save=1 \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.lte_vrat_report=1 \
     persist.rild.nitz_plmn="" \
     persist.rild.nitz_long_ons_0="" \
     persist.rild.nitz_long_ons_1="" \
@@ -192,8 +178,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8974
 
-# call common msm8960
-$(call inherit-product, device/samsung/msm8960-common/msm8960.mk)
+# call common msm8974
+$(call inherit-product, device/samsung/msm8974-common/msm8974.mk)
 
 # call dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
