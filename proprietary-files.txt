@@ -11,7 +11,6 @@ vendor/lib/libthermalclient.so
 
 # Bluetooth firmware
 vendor/firmware/bcm4339.hcd
-vendor/firmware/bcm4339.hcd:vendor/firmware/bcm4335.hcd
 vendor/firmware/bcm4339_A0.hcd
 vendor/firmware/bcm4339_murata.hcd
 vendor/firmware/bcm4339_semco.hcd
