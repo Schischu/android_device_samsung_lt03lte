@@ -23,7 +23,6 @@ vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0043.0215_N1-LTE.hcd
 
 # GPS - P605OXACNE2
 -app/com.qualcomm.location.apk
-bin/gsiff_daemon
 etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 vendor/lib/libgeofence.so
