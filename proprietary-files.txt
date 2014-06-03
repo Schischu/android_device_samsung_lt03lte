@@ -1,25 +1,37 @@
-# Bins
+# Bins - P605OXACNE2
+bin/hvdcp
 bin/mpdecision
 bin/radish
 bin/rfs_access
 #bin/prepare_param.sh
 
-# Thermal
+# Thermal - P605OXACNE2
 bin/thermald
 bin/thermal-engine
 vendor/lib/libthermalclient.so
 
-# Bluetooth firmware
+# Bluetooth firmware - P605OXACNE2
+vendor/firmware/bcm4335.hcd
+vendor/firmware/bcm4335_A0.hcd
+vendor/firmware/bcm4335_murata.hcd
+vendor/firmware/bcm4335_semco.hcd
 vendor/firmware/bcm4339.hcd
 vendor/firmware/bcm4339_A0.hcd
 vendor/firmware/bcm4339_murata.hcd
 vendor/firmware/bcm4339_semco.hcd
+vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0043.0215_N1-LTE.hcd
 
-# GPS
+# GPS - P605OXACNE2
+-app/com.qualcomm.location.apk
+bin/gsiff_daemon
+etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
 vendor/lib/libgeofence.so
+vendor/lib/libizat_core.so
+vendor/lib/liblbs_core.so
+vendor/lib/liblocationservice.so
 
-# Audio
+# Audio - P605OXACNE2
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbloader.so:lib/libacdbloader.so
 vendor/lib/libaudcal.so
@@ -34,7 +46,7 @@ etc/Hdmi_cal.acdb
 etc/Headset_cal.acdb
 etc/Speaker_cal.acdb
 
-# Adreno GPU
+# Adreno GPU - P605OXACNE2
 vendor/lib/egl/eglsubAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -42,20 +54,21 @@ vendor/lib/egl/libGLESv2_adreno.so
 vendor/lib/egl/libq3dtools_adreno.so
 vendor/lib/libadreno_utils.so
 vendor/lib/libC2D2.so
-vendor/lib/libc2d_a3xx.so
-vendor/lib/libc2d_z180.so
+vendor/lib/libc2d30-a3xx.so
+vendor/lib/libc2d30.so
 vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libOpenVG.so
 vendor/lib/libOpenCL.so
-vendor/lib/libllvm-a3xx.so
+vendor/lib/libllvm-qcom.so
 vendor/lib/libsc-a3xx.so
 etc/firmware/a330_pfp.fw
 etc/firmware/a330_pm4.fw
 
-# Graphics
+# Graphics - P605OXACNE2
 vendor/lib/libmm-color-convertor.so
 
+# RIL - P605OXACNE2
 lib/libsec-ril.so
 lib/libril.so
 lib/hw/sensors.msm8974.so
@@ -89,7 +102,7 @@ lib/libreference-ril.so
 lib/libril-qcril-hook-oem.so
 lib/libsecril-client.so
 
-# Time services
+# Time services - P605OXACNE2
 bin/time_daemon
 -vendor/lib/libtime_genoff.so
 
@@ -97,6 +110,7 @@ bin/time_daemon
 lib/libOmxVdecHevc.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
+vendor/lib/libHevcSwDecoder.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
 vendor/lib/libmmparser.so
@@ -106,13 +120,13 @@ vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
 
-# Camera
+# Camera - P605OXACNE2
 bin/mm-qcamera-daemon
 cameradata/datapattern_420sp.yuv
 cameradata/datapattern_front_420sp.yuv
 etc/imx134_module_info.xml
 etc/imx135_module_info.xml
-lib/hw/camera.msm8974.so:lib/hw/camera.vendor.msm8974.so
+lib/hw/camera.msm8974.so
 lib/libTsAe.so
 lib/libTsAf.so
 lib/libTs_J_Accm.so
@@ -158,23 +172,15 @@ lib/libchromatix_imx135_preview.so
 lib/libchromatix_imx135_snapshot.so
 lib/libchromatix_imx135_uhd_video.so
 lib/libchromatix_imx135_zslshot.so
-lib/libchromatix_s5k6b2yx_common.so
-lib/libchromatix_s5k6b2yx_default_video.so
-lib/libchromatix_s5k6b2yx_pip.so
-lib/libchromatix_s5k6b2yx_preview.so
-lib/libchromatix_s5k6b2yx_smart_stay.so
-lib/libchromatix_s5k6b2yx_vt.so
-lib/libchromatix_s5k6b2yx_vt_hd.so
-lib/libchromatix_s5k6b2yx_zslshot.so
 lib/libmmcamera2_stats_algorithm.so
 lib/libmmcamera_cac2_lib.so
 lib/libmmcamera_fidelix_eeprom.so
 lib/libmmqjpeg_codec.so
 lib/libmmjpeg.so
 lib/libmmjpeg_interface.so
-lib/libmmcamera_s5k6b2yx.so
 lib/libsecnativefeature.so
 lib/libvdis.so
+vendor/lib/libmmcamera_imx134.so
 vendor/lib/libmmcamera_imx135.so
 vendor/lib/libmmcamera_faceproc.so
 vendor/lib/libsensor1.so
@@ -205,7 +211,7 @@ vendor/lib/libchromatix_imx135_vt.so
 vendor/lib/libchromatix_imx135_vt_hd.so
 vendor/lib/liboemcamera.so
 
-# Wi-Fi
+# Wi-Fi - P605OXACNE2
 etc/wifi/bcmdhd_apsta.bin
 etc/wifi/bcmdhd_ibss.bin
 etc/wifi/bcmdhd_mfg.bin
@@ -215,32 +221,34 @@ etc/wifi/nvram_mfg.txt
 etc/wifi/nvram_net.txt
 etc/wifi/wpa_supplicant.conf
 
-# Perf
+# Perf - P605OXACNE2
 vendor/lib/libqc-opt.so
 
-# DRM
+# DRM - P605OXACNE2
 bin/qseecomd
 lib/libdrmdecrypt.so
 lib/libhdcp2.so
-lib/libWVStreamControlAPI_L1.so
+lib/libstagefright_hdcp.so
 lib/libwvm.so
 lib/drm/libdrmwvmplugin.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/liboemcrypto.so
+vendor/lib/librpmb.so
+vendor/lib/libssd.so
 vendor/lib/libQSEEComAPI.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
-# IPC router security
+# IPC router security - P605OXACNE2
 etc/sec_config
 bin/irsc_util
 
-# CPP firmware
+# CPP firmware - P605OXACNE2
 etc/firmware/cpp_firmware_v1_1_1.fw
 etc/firmware/cpp_firmware_v1_1_6.fw
 etc/firmware/cpp_firmware_v1_2_0.fw
 
-# postproc
-bin/mm-pp-daemon
+# postproc - P605OXACNE2
+vendor/lib/libdisp-aba.so
 vendor/lib/libmm-abl.so
 vendor/lib/libmm-abl-oem.so

@@ -77,9 +77,8 @@ PRODUCT_COPY_FILES += \
 # Keylayouts
 PRODUCT_COPY_FILES += \
     device/samsung/lt03lte/keylayout/atmel_mxt_ts.kl:system/usr/keylayout/atmel_mxt_ts.kl \
-    device/samsung/lt03lte/keylayout/Button_Jack.kl:system/usr/keylayout/Button_Jack.kl \
     device/samsung/lt03lte/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
-    device/samsung/lt03lte/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl
+    device/samsung/lt03lte/keylayout/synaptics_rmi4_i2c.kl:system/usr/keylayout/synaptics_rmi4_i2c.kl
 
 # Ramdisk
 PRODUCT_PACKAGES += \
