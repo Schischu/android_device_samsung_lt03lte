@@ -67,8 +67,7 @@ done
 # Pick up overlay for features that depend on non-open-source files
 PRODUCT_PACKAGES += \\
     libtime_genoff \\
-    com.qualcomm.location \\
-    PPPreference
+    com.qualcomm.location
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
