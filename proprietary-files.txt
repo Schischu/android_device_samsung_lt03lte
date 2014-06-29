@@ -25,6 +25,7 @@ vendor/firmware/BT_FW_VER_BCM4339_003.001.009.0043.0215_N1-LTE.hcd
 -app/com.qualcomm.location.apk
 etc/permissions/com.qualcomm.location.xml
 lib/libloc_api_v02.so
+lib/libak8963c.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
 vendor/lib/liblbs_core.so

@@ -255,6 +255,18 @@
     <bool name="config_enableLockScreenTranslucentDecor">true</bool>
     <bool name="config_enableTranslucentDecor">true</bool>
 
+    <!-- Control the behavior when the user long presses the home button.
+            0 - Nothing
+            1 - Menu key
+            2 - Recent apps view in SystemUI
+            3 - Launch assist intent
+            4 - Voice Search
+            5 - In-app Search
+         This needs to match the constants in
+         policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
+    -->
+    <integer name="config_longPressOnHomeBehavior">2</integer>
+
     <!-- Boolean to enable stylus gestures -->
     <bool name="config_stylusGestures">true</bool>
 

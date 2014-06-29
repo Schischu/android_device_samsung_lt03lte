@@ -89,6 +89,7 @@ using namespace loc_core;
 boolean configAlreadyRead = false;
 unsigned int agpsStatus = 0;
 loc_gps_cfg_s_type gps_conf;
+loc_sec_gps_cfg_s_type sec_gps_conf;
 loc_sap_cfg_s_type sap_conf;
 
 /* Parameter spec table */

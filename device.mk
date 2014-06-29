@@ -24,7 +24,7 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/lt03lte/overlay
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1600
@@ -71,7 +71,7 @@ PRODUCT_PACKAGES += \
 GPS_CONF := device/samsung/lt03lte/gps/etc/gps.conf
 
 PRODUCT_COPY_FILES += \
-    $(GPS_CONF):/system/etc/gps.conf \
+    device/samsung/lt03lte/gps/etc/gps.conf:/system/etc/gps.conf \
     device/samsung/lt03lte/gps/etc/sap.conf:/system/etc/sap.conf
 
 # Keylayouts
@@ -117,6 +117,7 @@ PRODUCT_PACKAGES += libxml2
 # IR packages
 PRODUCT_PACKAGES += \
     consumerir.msm8974
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml
 

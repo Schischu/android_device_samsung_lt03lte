@@ -31,16 +31,19 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 
 # Kernel Configs
 TARGET_KERNEL_SOURCE := kernel/samsung/lt03lte
-TARGET_KERNEL_CONFIG := msm8974_sec_lt03eur_defconfig
+TARGET_KERNEL_CONFIG := msm8974_sec_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000 --tags_offset 0x01e00000
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/lt03lte/mkbootimg.mk
+
+# INSTALLED_DTIMAGE_TARGET := device/samsung/lt03lte/prebuilt/dtb
+# TARGET_PREBUILT_KERNEL := device/samsung/lt03lte/prebuilt/zImage
 
 # Graphics
 BOARD_EGL_CFG := device/samsung/lt03lte/egl.cfg
@@ -81,7 +84,7 @@ AUDIO_FEATURE_DISABLED_ANC_HEADSET := true
 #AUDIO_FEATURE_DISABLED_SPKR_PROTECTION := true
 #AUDIO_FEATURE_DISABLED_DS1_DOLBY_DDP := true
 
-# Build lights 
+# Build lights
 TARGET_PROVIDES_LIBLIGHT := true
 
 # Time services
@@ -103,9 +106,9 @@ MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := lt03lte
+TARGET_OTA_ASSERT_DEVICE := lt03lte,lt03ltexx
 
-TARGET_KERNEL_VARIANT_CONFIG := msm8974_sec_defconfig
+TARGET_KERNEL_VARIANT_CONFIG := msm8974_sec_lt03eur_defconfig
 
 # PowerHAL
 TARGET_POWERHAL_VARIANT := qcom
