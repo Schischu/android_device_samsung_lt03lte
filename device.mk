@@ -64,9 +64,11 @@ PRODUCT_COPY_FILES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8974 \
-    libgps.utils \
-    libloc_core \
-    libloc_eng
+    libloc_core
+
+
+#    libgps.utils
+#    libloc_eng
 
 GPS_CONF := device/samsung/lt03lte/gps/etc/gps.conf
 
