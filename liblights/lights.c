@@ -34,6 +34,12 @@ static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 char const*const PANEL_FILE = "/sys/class/leds/lcd-backlight/brightness";
 char const*const BUTTON_FILE = "/sys/class/sec/sec_touchkey/brightness";
 
+char const*const LED_MENU_BRIGHTNESS = "/sys/class/leds/led:rgb_green/brightness";
+char const*const LED_BACK_BRIGHTNESS = "/sys/class/leds/led:rgb_blue/brightness";
+
+char const*const LED_MENU_BLINK = "/sys/class/leds/led:rgb_green/blink";
+char const*const LED_BACK_BLINK = "/sys/class/leds/led:rgb_blue/blink";
+
 void init_g_lock(void)
 {
     pthread_mutex_init(&g_lock, NULL);
@@ -47,6 +53,7 @@ static int write_int(char const *path, int value)
     already_warned = 0;
 
     ALOGV("write_int: path %s, value %d", path, value);
+
     fd = open(path, O_RDWR);
 
     if (fd >= 0) {
@@ -64,6 +71,38 @@ static int write_int(char const *path, int value)
     }
 }
 
+static int read_int(char const *path, int* value)
+{
+    int fd;
+    static int already_warned;
+
+    already_warned = 0;
+
+    ALOGV("read_int: path %s", path);
+
+    fd = open(path, O_RDWR);
+
+    if (fd >= 0) {
+        char buffer[20];
+        int bytes = read(fd, buffer, 20);
+        if (bytes <= 0)
+            return -errno;
+
+        int amt = sscanf(buffer, "%d", value);
+        close(fd);
+
+        ALOGV("read_int: path %s, value %d", path, *value);
+        return amt != 1 ? -errno : 0;
+    } else {
+        if (already_warned == 0) {
+            ALOGE("write_int failed to open %s\n", path);
+            already_warned = 1;
+        }
+        return -errno;
+    }
+
+}
+
 static int rgb_to_brightness(struct light_state_t const *state)
 {
     int color = state->color & 0x00ffffff;
@@ -74,7 +113,7 @@ static int rgb_to_brightness(struct light_state_t const *state)
 
 static int is_lit(struct light_state_t const* state)
 {
-    return state->color & 0x00ffffff;
+    return (state->color & 0x00ffffff) > 0;
 }
 
 static int set_light_backlight(struct light_device_t *dev,
@@ -85,8 +124,8 @@ static int set_light_backlight(struct light_device_t *dev,
 
     pthread_mutex_lock(&g_lock);
     err = write_int(PANEL_FILE, brightness);
-
     pthread_mutex_unlock(&g_lock);
+
     return err;
 }
 
@@ -103,6 +142,50 @@ set_light_buttons(struct light_device_t* dev,
 
     return err;
 
+}
+
+static int set_light_leds_battery(struct light_device_t *dev,
+            struct light_state_t const *state)
+{
+    int err = 0;
+    int brightness = 0;
+    int on = is_lit(state);
+
+    pthread_mutex_lock(&g_lock);
+    err = read_int(LED_BACK_BRIGHTNESS, &brightness);
+    pthread_mutex_unlock(&g_lock);
+
+    /*do not set if already on*/
+    if (err != 0 || (brightness != 0 && brightness != 20))
+        return err;
+
+    pthread_mutex_lock(&g_lock);
+    err = write_int(LED_BACK_BRIGHTNESS, on?20:0);
+    pthread_mutex_unlock(&g_lock);
+    
+    return err;
+}
+
+static int set_light_leds_notifications(struct light_device_t *dev,
+            struct light_state_t const *state)
+{
+    int err = 0;
+    int brightness = 0;
+    int on = is_lit(state);
+
+    pthread_mutex_lock(&g_lock);
+    err = read_int(LED_MENU_BRIGHTNESS, &brightness);
+    pthread_mutex_unlock(&g_lock);
+
+    /*do not set if already on*/
+    if (err != 0 || (brightness != 0 && brightness != 20))
+        return err;
+
+    pthread_mutex_lock(&g_lock);
+    err = write_int(LED_MENU_BLINK, on);
+    pthread_mutex_unlock(&g_lock);
+    
+    return err;
 }
 
 static int close_lights(struct light_device_t *dev)
@@ -124,6 +207,10 @@ static int open_lights(const struct hw_module_t *module, char const *name,
         set_light = set_light_backlight;
     else if (0 == strcmp(LIGHT_ID_BUTTONS, name))
         set_light = set_light_buttons;
+    else if (0 == strcmp(LIGHT_ID_BATTERY, name))
+        set_light = set_light_leds_battery;
+    else if (0 == strcmp(LIGHT_ID_NOTIFICATIONS, name))
+        set_light = set_light_leds_notifications;
     else
         return -EINVAL;
 
