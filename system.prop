@@ -17,3 +17,6 @@ ro.qc.sdk.audio.fluencetype=none
 
 # System property for number of mQANElements
 ro.ril.telephony.mqanelements=6
+
+# Allow lockscreen rotation
+lockscreen.rot_override=true
