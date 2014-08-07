@@ -46,7 +46,7 @@ AUDIO_FEATURE_DISABLED_FM := true
 AUDIO_FEATURE_DISABLED_MULTI_VOICE_SESSIONS := true
 
 # Bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/lt03lte/bluetooth/vnd_hlte.txt
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/lt03lte/bluetooth/vnd_lt03lte.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/lt03lte/bluetooth
 BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 BOARD_HAVE_BLUETOOTH_BCM := true
