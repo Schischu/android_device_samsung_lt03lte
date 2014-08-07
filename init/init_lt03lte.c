@@ -56,37 +56,51 @@ void init_msm_properties(unsigned long msm_id, unsigned long msm_ver, char *boar
 
     if (strstr(bootloader, "P605V")) {
         /* lt03ltevzw */
+        cdma_properties("0");
         property_set("ro.build.fingerprint", "samsung/lt03ltevzw/lt03lte:4.4.2/KOT49H/P605VVRUCNC2:user/release-keys");
         property_set("ro.build.description", "hltevzw-user 4.4.2 KOT49H P605VVRUCNC2 release-keys");
         property_set("ro.product.model", "SM-P605V");
         property_set("ro.product.device", "lt03ltevzw");
-        property_set("ro.telephony.ril.v3", "newDriverCallU,newDialCode");
-        property_set("ro.telephony.default_cdma_sub", "0");
         property_set("ro.cdma.home.operator.alpha", "Verizon");
         property_set("ro.cdma.home.operator.numeric", "311480");
     } else if (strstr(bootloader, "P605S")) {
         /* lt03ltesks */
+        gsm_properties();
         property_set("ro.build.fingerprint", "samsung/lt03ltesks/lt03lte:4.4.2/KOT49H/P605SKSUCND6:user/release-keys");
         property_set("ro.build.description", "hlteusc-user 4.4.2 KOT49H P605SKSUCND6 release-keys");
         property_set("ro.product.model", "SM-P605M");
         property_set("ro.product.device", "lt03ltesks");
-        property_set("ro.telephony.ril.v3", "newDialCode");
     } else if (strstr(bootloader, "P605M")) {
         /* lt03ltecmo */
+        gsm_properties();
         property_set("ro.build.fingerprint", "samsung/lt03ltecmo/hlteusc:4.4.2/KOT49H/P605UBUUCND6:user/release-keys");
         property_set("ro.build.description", "hlteusc-user 4.4.2 KOT49H P605UBUUCND6 release-keys");
         property_set("ro.product.model", "SM-P605M");
         property_set("ro.product.device", "lt03ltecmo");
-        property_set("ro.telephony.ril.v3", "newDialCode");
     } else {
         /* lt03ltexx */
+        gsm_properties();
         property_set("ro.build.fingerprint", "samsung/lt03ltexx/lt03lte:4.3/KOT49H/P605XXUCNE2:user/release-keys");
         property_set("ro.build.description", "lt03ltexx-user 4.4.2 KOT49H P605XXUCNE2 release-keys");
         property_set("ro.product.model", "SM-P605");
         property_set("ro.product.device", "lt03ltexx");
-        property_set("ro.telephony.ril.v3", "newDialCode");
     }
     property_get("ro.product.device", device);
     strlcpy(devicename, device, sizeof(devicename));
     ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, devicename);
+}
+
+void gsm_properties()
+{
+    property_set("ro.telephony.default_network", "9");
+    property_set("ro.telephony.ril.v3", "newDialCode");
+    property_set("telephony.lteOnGsmDevice", "1");
+}
+
+void cdma_properties(char cdma_sub[])
+{
+    property_set("ro.telephony.default_cdma_sub", cdma_sub); // 0: RUIM/SIM  1: NV
+    property_set("ro.telephony.default_network", "10");
+    property_set("ro.telephony.ril.v3", "newDriverCallU,newDialCode");
+    property_set("telephony.lteOnCdmaDevice", "1");
 }
