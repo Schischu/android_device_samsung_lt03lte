@@ -33,3 +33,6 @@ debug.sensors=1
 
 # Allow lockscreen rotation
 lockscreen.rot_override=true
+
+# Allow multiple users
+fw.max_users=4
